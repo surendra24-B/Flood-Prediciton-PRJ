@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flood Prediction.AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="background">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+
+    <span class="bubble b1"></span>
+    <span class="bubble b2"></span>
+    <span class="bubble b3"></span>
+    <span class="bubble b4"></span>
+    <span class="bubble b5"></span>
+</div>
+
+<header class="hero">
+
+    <div class="hero-left">
+
+        <span class="badge">
+            <i class="fa-solid fa-brain"></i>
+            AI Powered
+        </span>
+
+        <h1>
+            Flood Prediction<span>.AI</span>
+        </h1>
+
+        <p>
+            Predict flood risk using Machine Learning,
+            rainfall statistics and weather information.
+        </p>
+
+        <div class="features">
+
+            <div class="feature">
+                <i class="fa-solid fa-cloud-rain"></i>
+                Rainfall Analysis
+            </div>
+
+            <div class="feature">
+                <i class="fa-solid fa-chart-line"></i>
+                AI Prediction
+            </div>
+
+            <div class="feature">
+                <i class="fa-solid fa-shield-halved"></i>
+                Early Warning
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="glass-card">
+
+        <h2>
+            <i class="fa-solid fa-water"></i>
+            Predict Flood
+        </h2>
+
+        <form action="/predict" method="POST">
+
+            <div class="grid">
+
+                <div class="input-group">
+                    <label>Temperature (°C)</label>
+                    <input type="number" step="any" name="Temp" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Humidity (%)</label>
+                    <input type="number" step="any" name="Humidity" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Annual Rainfall</label>
+                    <input type="number" step="any" name="ANNUAL" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Jun-Sep Rainfall</label>
+                    <input type="number" step="any" name="JunSep" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Average June Rainfall</label>
+                    <input type="number" step="any" name="avgjune" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Subdivision Index</label>
+                    <input type="number" step="any" name="sub" required>
+                </div>
+
+            </div>
+
+            <button class="predict-btn">
+                <i class="fa-solid fa-bolt"></i>
+                Predict Flood Risk
+            </button>
+
+        </form>
+
+       {% if prediction %}
+
+<div class="result-card">
+
+    <h3 style="color: {{ color }};">
+        {{ prediction }}
+    </h3>
+
+    <div class="progress-container">
+        <div class="progress-bar"
+             style="width: {{ confidence }}%; background: {{ color }};">
+        </div>
+    </div>
+
+    <h2>{{ confidence }}%</h2>
+
+    <div class="alert {% if prediction == 'Flood Risk' %}danger{% else %}safe{% endif %}">
+
+        <h4>{{ alert_title }}</h4>
+
+        <ul>
+
+            {% for item in recommendation %}
+
+            <li>{{ item }}</li>
+
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+        </div>
+
+</header>
+
+<section class="info">
+
+<div class="info-card">
+<i class="fa-solid fa-cloud-showers-heavy"></i>
+<h3>Weather Inputs</h3>
+<p>Uses rainfall and environmental features for prediction.</p>
+</div>
+
+<div class="info-card">
+<i class="fa-solid fa-microchip"></i>
+<h3>XGBoost AI</h3>
+<p>Powered by a trained Machine Learning model.</p>
+</div>
+
+<div class="info-card">
+<i class="fa-solid fa-chart-column"></i>
+<h3>Confidence Score</h3>
+<p>Displays prediction confidence visually.</p>
+</div>
+
+</section>
+
+<footer>
+    <p>Flood Prediction.AI • Flask • Machine Learning • XGBoost</p>
+</footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
