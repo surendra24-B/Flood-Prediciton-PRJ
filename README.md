@@ -118,7 +118,7 @@ Flood-Prediction-AI/
 ### Clone the repository
 
 ```bash
-git clone https://github.com/your-username/Flood-Prediction-AI.git
+git clone https://github.com/surendra24-B/Flood-Prediction-AI.git
 ```
 
 ---
@@ -168,8 +168,6 @@ http://127.0.0.1:5000
 
 - Flood Risk / Safe Prediction
 - Confidence Percentage
-- Visual Progress Indicator
-- Safety Recommendations
 
 ---
 
